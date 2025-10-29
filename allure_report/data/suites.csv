@@ -1,0 +1,49 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"
+Создание заказа без ингредиентов → 400 и сообщение, что нужны ids ингредиентов.
+","706","test_order_with_no_ingredients","tests","2025-10-29","passed","2025-10-29","TestCreateOrder","test_orders","",""
+"
+Создать пользователя, не заполнив одно из обязательных полей.
+Ожидаем 403 и сообщение о required полях.
+","611","test_register_missing_required_field[password]","tests","2025-10-29","passed","2025-10-29","TestRegister","test_auth","",""
+"
+Вход под существующим пользователем.
+","818","test_login_existing_user","tests","2025-10-29","passed","2025-10-29","TestLogin","test_auth","",""
+"
+Вход с неверным логином и/или паролем.
+Ожидаем 401 и сообщение про некорректные данные.
+","2146","test_login_wrong_email_or_password[not_exists@example.com-password123]","tests","2025-10-29","passed","2025-10-29","TestLogin","test_auth","",""
+"
+Создать пользователя, не заполнив одно из обязательных полей.
+Ожидаем 403 и сообщение о required полях.
+","612","test_register_missing_required_field[email]","tests","2025-10-29","passed","2025-10-29","TestRegister","test_auth","",""
+"
+Создать уникального пользователя.
+Примечание: фикстура new_user уже отправила POST /auth/register.
+Здесь повторно регистрировать не нужно — просто проверим,
+что если попробовать ещё раз, придёт 403 (уже существует).
+","614","test_register_unique_user","tests","2025-10-29","passed","2025-10-29","TestRegister","test_auth","",""
+"
+Создание заказа без авторизации → 401 и сообщение про необходимость авторизации.
+","611","test_order_without_auth_with_ingredients","tests","2025-10-29","failed","2025-10-29","TestCreateOrder","test_orders","",""
+"
+Создать пользователя, не заполнив одно из обязательных полей.
+Ожидаем 403 и сообщение о required полях.
+","611","test_register_missing_required_field[name]","tests","2025-10-29","passed","2025-10-29","TestRegister","test_auth","",""
+"
+Создание заказа с авторизацией и валидными ингредиентами → 200, success=True, есть номер заказа.
+","3481","test_order_with_auth_and_ingredients","tests","2025-10-29","passed","2025-10-29","TestCreateOrder","test_orders","",""
+"
+Создать пользователя, который уже зарегистрирован.
+","607","test_register_existing_user","tests","2025-10-29","passed","2025-10-29","TestRegister","test_auth","",""
+"
+Вход с неверным логином и/или паролем.
+Ожидаем 401 и сообщение про некорректные данные.
+","813","test_login_wrong_email_or_password[someone@example.com-wrongpass]","tests","2025-10-29","passed","2025-10-29","TestLogin","test_auth","",""
+"
+Доп. позитив: ещё раз проверим success=True при валидном заказе с авторизацией.
+","3493","test_order_with_ingredients_explicit","tests","2025-10-29","passed","2025-10-29","TestCreateOrder","test_orders","",""
+"
+Создание заказа с неверным хешем ингредиентов → обычно 500 по доке.
+Если бэкенд вернёт 400 — тоже примем как валидную реакцию клиента на невалидный инпут.
+","756","test_order_with_invalid_ingredient_hash","tests","2025-10-29","passed","2025-10-29","TestCreateOrder","test_orders","",""
