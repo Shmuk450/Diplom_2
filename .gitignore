@@ -3,8 +3,9 @@ venv/
 .env
 
 # кеши
-_pycache_/
-**/_pycache_/
+__pycache__/
+**/__pycache__/
+*/__pycache__/
 .pytest_cache/
 .allure/
 allure_results/
