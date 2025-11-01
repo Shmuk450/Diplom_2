@@ -4,14 +4,15 @@ from src.data import generate_email, DEFAULT_PASSWORD, DEFAULT_NAME
 
 
 class StellarApi:
-    """Класс для работы с API Stellar Burgers"""
+    """Класс для взаимодействия с API Stellar Burgers."""
 
-    def __init__(self):
+    def _init_(self):
+        # Создаём сессию для выполнения запросов и инициализируем токен авторизации
         self.session = requests.Session()
         self.token = None
 
     def register(self, email=None, password=None, name=None):
-        """Регистрация нового пользователя"""
+        """Регистрация нового пользователя."""
         if not email:
             email = generate_email()
         if not password:
@@ -21,25 +22,29 @@ class StellarApi:
 
         payload = {"email": email, "password": password, "name": name}
         response = self.session.post(REGISTER, json=payload)
+
+        # Если регистрация успешна — сохраняем токен авторизации
         if response.status_code == 200 and "accessToken" in response.json():
             self.token = response.json()["accessToken"]
         return response
 
     def login(self, email, password):
-        """Авторизация пользователя"""
+        """Авторизация пользователя по email и паролю."""
         payload = {"email": email, "password": password}
         response = self.session.post(LOGIN, json=payload)
+
+        # Если авторизация успешна — сохраняем токен
         if response.status_code == 200 and "accessToken" in response.json():
             self.token = response.json()["accessToken"]
         return response
 
     def get_user(self):
-        """Получение данных текущего пользователя"""
+        """Получение данных текущего авторизованного пользователя."""
         headers = {"Authorization": self.token} if self.token else {}
         return self.session.get(USER, headers=headers)
 
     def create_order(self, ingredients):
-        """Создание заказа"""
+        """Создание нового заказа."""
         headers = {"Authorization": self.token} if self.token else {}
         payload = {"ingredients": ingredients}
         return self.session.post(ORDERS, headers=headers, json=payload)

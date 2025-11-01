@@ -4,6 +4,7 @@ venv/
 
 # кеши
 _pycache_/
+**/_pycache_/
 .pytest_cache/
 .allure/
 allure_results/

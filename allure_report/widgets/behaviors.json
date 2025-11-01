@@ -1,1 +1,1 @@
-{"total":13,"items":[]}
+{"total":7,"items":[{"uid":"884917acc88b921aa31a9670f48064aa","name":"Регистрация пользователей","statistic":{"failed":0,"broken":0,"skipped":0,"passed":5,"unknown":0,"total":5}},{"uid":"110fb68f6c090cef6f64ed30c6e1c468","name":"Авторизация пользователей","statistic":{"failed":0,"broken":0,"skipped":0,"passed":3,"unknown":0,"total":3}}]}
