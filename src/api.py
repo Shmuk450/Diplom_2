@@ -1,4 +1,5 @@
 import requests
+import allure
 from src.endpoints import REGISTER, LOGIN, USER, ORDERS
 from src.data import generate_email, DEFAULT_PASSWORD, DEFAULT_NAME
 
@@ -6,11 +7,12 @@ from src.data import generate_email, DEFAULT_PASSWORD, DEFAULT_NAME
 class StellarApi:
     """Класс для взаимодействия с API Stellar Burgers."""
 
-    def _init_(self):
+    def __init__(self):
         # Создаём сессию для выполнения запросов и инициализируем токен авторизации
         self.session = requests.Session()
         self.token = None
 
+    @allure.step("Регистрация нового пользователя")
     def register(self, email=None, password=None, name=None):
         """Регистрация нового пользователя."""
         if not email:
@@ -28,6 +30,7 @@ class StellarApi:
             self.token = response.json()["accessToken"]
         return response
 
+    @allure.step("Авторизация пользователя по email и паролю")
     def login(self, email, password):
         """Авторизация пользователя по email и паролю."""
         payload = {"email": email, "password": password}
@@ -38,11 +41,13 @@ class StellarApi:
             self.token = response.json()["accessToken"]
         return response
 
+    @allure.step("Получение данных текущего авторизованного пользователя")
     def get_user(self):
         """Получение данных текущего авторизованного пользователя."""
         headers = {"Authorization": self.token} if self.token else {}
         return self.session.get(USER, headers=headers)
 
+    @allure.step("Создание нового заказа")
     def create_order(self, ingredients):
         """Создание нового заказа."""
         headers = {"Authorization": self.token} if self.token else {}
