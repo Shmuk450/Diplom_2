@@ -1,0 +1,16 @@
+# виртуальное окружение
+venv/
+.env
+
+# кеши
+__pycache__/
+**/__pycache__/
+*/__pycache__/
+.pytest_cache/
+.allure/
+allure_results/
+
+# служебные файлы
+.idea/
+.vscode/
+.DS_Store
